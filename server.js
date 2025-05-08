@@ -17,8 +17,35 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+//Schema
+const WorkExperienceSchema = new mongoose.Schema({
+    company_name: {
+        type: String,
+        required: true
+    },
+    job_title: {
+        type: String,
+        required: true
+    },
+    start_date:{
+        type: Date,
+        required: true
+    },
+    end_date:{
+        type: Date,
+        required: false
+    },
+    description:{
+        type: String,
+        required: true
+    }
+});
+
+//Model
+const WorkExperience = mongoose.model("WorkExperience", WorkExperienceSchema);
+
 //Anslut till MongoDB-databas via Atlas
-mongoose.connect("mongodb+srv://cjungefalk:hlxjUix394rfTh6O@cluster0.km6kdwr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(() => {
+mongoose.connect("mongodb+srv://cjungefalk:hlxjUix394rfTh6O@cluster0.km6kdwr.mongodb.net/cv?retryWrites=true&w=majority&appName=Cluster0").then(() => {
     console.log("Ansluten till databas")
 }).catch((error) => {
     console.error("Det gick inte att ansluta till databasen" + error)
