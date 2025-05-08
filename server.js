@@ -27,15 +27,15 @@ const WorkExperienceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    start_date:{
+    start_date: {
         type: Date,
         required: true
     },
-    end_date:{
+    end_date: {
         type: Date,
         required: false
     },
-    description:{
+    description: {
         type: String,
         required: true
     }
@@ -54,8 +54,14 @@ mongoose.connect("mongodb+srv://cjungefalk:hlxjUix394rfTh6O@cluster0.km6kdwr.mon
 //Routes
 
 //get
-app.get("/work_experience", (req, res) => {
-    res.json({ message: "Hämta alla poster" })
+app.get("/work_experience", async (req, res) => {
+    try {
+        let result = await WorkExperience.find({});
+
+        return res.json(result);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
 });
 
 //get - med id
