@@ -70,8 +70,14 @@ app.get("/work_experience/:id", (req, res) => {
 });
 
 //post
-app.post("/work_experience", (req, res) => {
-    res.json({ message: "Lägg till post" })
+app.post("/work_experience", async (req, res) => {
+
+    try {
+        let result = await WorkExperience.create(req.body);
+        return res.json(result);
+    } catch (error) {
+        return res.status(400).json(error)
+    }
 });
 
 //put
