@@ -67,9 +67,8 @@ app.get("/work_experience", async (req, res) => {
 //get - med id
 app.get("/work_experience/:id", async (req, res) => {
     try {
-        let id = req.params.id
 
-        let result = await WorkExperience.findById(id)
+        let result = await WorkExperience.findById(req.params.id)
         return res.json(result);
 
     } catch (error) {
@@ -89,17 +88,23 @@ app.post("/work_experience", async (req, res) => {
 });
 
 //put
-app.put("/work_experience/:id", (req, res) => {
-    res.json({ message: "Uppdatera post baserat på id" })
+app.put("/work_experience/:id", async (req, res) => {
+
+    try {
+        let result = await WorkExperience.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        return res.json(result)
+
+    } catch (error) {
+        return res.status(400).json(error)
+    }
+
 });
 
 //delete
 app.delete("/work_experience/:id", async (req, res) => {
 
-    let id = req.params.id;
-
     try {
-        let result = await WorkExperience.findByIdAndDelete(id)
+        let result = await WorkExperience.findByIdAndDelete(req.params.id)
         return res.json(result)
     } catch (error) {
         return res.status(500).json(error);
