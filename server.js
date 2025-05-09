@@ -86,8 +86,16 @@ app.put("/work_experience/:id", (req, res) => {
 });
 
 //delete
-app.delete("/work_experience/:id", (req, res) => {
-    res.json({ message: "Ta bort post baserat på Id" })
+app.delete("/work_experience/:id", async(req, res) => {
+
+    let id = req.params.id;
+
+    try {
+        let result = await WorkExperience.findByIdAndDelete(id)
+        return res.json(result)
+    } catch (error) {
+        return res.status(500).json(error);
+    }
 })
 
 //Starta server
