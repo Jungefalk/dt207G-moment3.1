@@ -65,8 +65,16 @@ app.get("/work_experience", async (req, res) => {
 });
 
 //get - med id
-app.get("/work_experience/:id", (req, res) => {
-    res.json({ message: "Hämta data baserat på id" })
+app.get("/work_experience/:id", async (req, res) => {
+    try {
+        let id = req.params.id
+
+        let result = await WorkExperience.findById(id)
+        return res.json(result);
+
+    } catch (error) {
+        return res.status(500).json(error);
+    }
 });
 
 //post
@@ -86,7 +94,7 @@ app.put("/work_experience/:id", (req, res) => {
 });
 
 //delete
-app.delete("/work_experience/:id", async(req, res) => {
+app.delete("/work_experience/:id", async (req, res) => {
 
     let id = req.params.id;
 
