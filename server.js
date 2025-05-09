@@ -21,15 +21,15 @@ app.use(express.json());
 const WorkExperienceSchema = new mongoose.Schema({
     company_name: {
         type: String,
-        required: true
+        required: [true, "Skicka med namn på företag"]
     },
     job_title: {
         type: String,
-        required: true
+        required: [true, "Skicka med jobbtitel"]
     },
     start_date: {
         type: Date,
-        required: true
+        required: [true, "Skicka med startdatum"]
     },
     end_date: {
         type: Date,
@@ -37,7 +37,7 @@ const WorkExperienceSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Skicka med arbetsbeskrivning"]
     }
 });
 
@@ -91,7 +91,7 @@ app.post("/work_experience", async (req, res) => {
 app.put("/work_experience/:id", async (req, res) => {
 
     try {
-        let result = await WorkExperience.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        let result = await WorkExperience.findByIdAndUpdate(req.params.id, req.body, { new: true });
         return res.json(result)
 
     } catch (error) {
