@@ -1,7 +1,7 @@
 # DT207G - Moment 3, del 2.1
 ## Av Caroline Jungefalk
 
-Detta är en labb till kursent DT207G i bakend-baserad webbutveckling.  
+Detta är en labb till kursen DT207G i bakend-baserad webbutveckling.  
 Syftet med labben är att förstå hur man kan bygga en webbtjänst med NoSQL-databaser, i detta fallet med MongoDB.  
   
 Detta repo innehåller kod för en webbtjänst som hanterar CRUD-operationer för ett CV. Den är byggd med Mongoose och Express. 
