@@ -27,6 +27,10 @@ const WorkExperienceSchema = new mongoose.Schema({
         type: String,
         required: [true, "Skicka med jobbtitel"]
     },
+    location:{
+        type: String,
+        required: [true, "Skicka med plats"]
+    },
     start_date: {
         type: Date,
         required: [true, "Skicka med startdatum"]
